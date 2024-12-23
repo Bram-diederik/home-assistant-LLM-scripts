@@ -1,0 +1,25 @@
+alias: list_at5_nl
+sequence:
+  - action: shell_command.at5_lookup
+    metadata: {}
+    data:
+      hours: |
+        {{ hours | default(3) }}
+    response_variable: list
+  - variables:
+      list: |
+        {{ {'value': list.stdout } }}
+  - stop: finished
+    response_variable: list
+description: |-
+  script.list_at5_nl(hours=<"hours to lookup default 3>")
+  at5 is the local news broadcaster for amsterdam.
+fields:
+  hours:
+    selector:
+      number:
+        min: 1
+        max: 100
+    name: hours
+    required: true
+    default: 3

@@ -1,0 +1,42 @@
+alias: list_112
+description: >
+  to list or query real time reliable info about calamities or savety use
+  script.list_112 this script is connected to the rss feeds of public 112
+  information if the location given. always run this script when 112 information
+  is requested.
+
+  the scripts returns a wider range than the selected location. filter out info
+  for the location only.
+sequence:
+  - action: shell_command.112_lookup
+    metadata: {}
+    data:
+      zone: |
+        {{ zone }}
+      hours: |
+        {{ hours | default(3) }}
+    response_variable: list
+  - variables:
+      list: |
+        {{ {'value': list.stdout } }}
+  - stop: finished
+    response_variable: list
+fields:
+  zone:
+    selector:
+      text: null
+    name: zone
+    description: >-
+      the current known zone. Dont guess unknown zones like home or hospital
+      are translated in the script
+    required: true
+  hours:
+    selector:
+      number:
+        min: 1
+        max: 24
+        step: 1
+    name: hours
+    description: "hours to query "
+    default: 3
+    required: false

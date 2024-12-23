@@ -1,0 +1,24 @@
+alias: list_nu_nl
+sequence:
+  - action: shell_command.nu_nl_lookup
+    metadata: {}
+    data:
+      hours: |
+        {{ hours | default(3) }}
+    response_variable: list
+  - variables:
+      list: |
+        {{ {'value': list.stdout } }}
+  - stop: finished
+    response_variable: list
+description: this script lists dutch general news
+fields:
+  hours:
+    selector:
+      number:
+        min: 1
+        max: 24
+        step: 1
+    name: hours
+    description: hours of news queried
+    required: true

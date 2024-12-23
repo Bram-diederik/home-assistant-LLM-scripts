@@ -1,0 +1,24 @@
+alias: list_cnn_news
+sequence:
+  - action: shell_command.nu_nl_buitenland_lookup
+    metadata: {}
+    data:
+      hours: |
+        {{ hours | default(3) }}
+    response_variable: list
+  - variables:
+      list: |
+        {{ {'value': list.stdout } }}
+  - stop: finished
+    response_variable: list
+description: |-
+  this script lists global  news.
+  use this script for any question about a country and a event if its not clear
+fields:
+  hours:
+    selector:
+      text: {}
+    name: hours
+    description: hours of news queried
+    required: true
+    default: "24"
