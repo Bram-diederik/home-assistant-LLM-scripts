@@ -1,8 +1,13 @@
 ![Screenshot](https://github.com/Bram-diederik/home-assistant-LLM-scripts/blob/main/1024-2717.jpg?raw=true)
 
+# AI functions
+Add the python scripts to a linux server. 
+follow the ssh how to for making secure connections. 
+apply the scripts in home assistant.
+make them known the the LLM and edit the prompt
 
 
-SSH key howto
+# SSH key how to
 
 the integration requires ssh with out a password. 
 you dont want shell access with no passwords.
