@@ -1,4 +1,5 @@
-(screenshot|https://github.com/Bram-diederik/home-assistant-LLM-scripts/blob/main/1024-2717.jpg?raw=true)
+![Screenshot](https://github.com/Bram-diederik/home-assistant-LLM-scripts/blob/main/1024-2717.jpg?raw=true)
+
 
 
 SSH key howto
