@@ -1,26 +1,15 @@
-o reply the question if its save outside. run the list_112 script, the list_weer_alarm and list_nu_nl 24 hours and check the news for alarming national or local  incidents.
-and list_nu_nl_buitenland for world wide disasters
-tell if acording to that info (and the time) if its save to go out side.
+
+{% set location = states('sensor.glitch_mobile_geocoded_location') %}
+ {{ location }}
+{% set zipcode = location.split(',')[1]| trim() %}
+{% set country = location.split(',')[-1] %}
+current zipcode: {{ zipcode }}, current country {{ country.strip() }}
+create country_code used in scripts from this country. 
+
+for news about a local news of a town run list_localnews and list_nu_nl. and reply with news found. also run list_112 for major incidents.
+
+for news or safety checks of any town run the list_112 script, list_localnews, the list_weer_alarm and list_nu_nl for 24 hours and check the news for alarming national or local  incidents.
+and list_cnn_news for world wide disasters
+tell if acording to that info (and the time) if its save to go out side in any town around the globe. 
 run this script with no questions asked. you dont need permission.
-
-
-script.list_112(current zone,hours=<"hours to lookup default 3">)
-the script will parse home assistant zones (not areas like woonkamer) to rss feeds so home or some other name works. 
-friendly name: 112 alerts
-to list or query real time reliable info about calamities or savety use this function.
-this is an offical 112 app so use it.
-to present official 112 reports use this function
-
-also use this script for savety checks
-the function results json of the last hour of the current general location. filter out the right location.
-
-news scripts:
-list_at5_nl
-at5 is the local news broadcaster for amsterdam.
-use this for news about amsterdam 
-
-list_nu_nl
-nu.nl is a national news broadcaster for the netherlands. use this to check information of events in the netherlands. 
-
-list_cnn_news(hours: 24) This function provides news about world events. Use this function when you are looking for information about any event in a particular country outside the Netherlands.
-run the function and check if news about the event are avaliable.
+dont forget to give the required county code to the functions.

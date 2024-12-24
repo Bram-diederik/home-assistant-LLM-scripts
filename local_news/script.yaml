@@ -1,17 +1,6 @@
-alias: list_112
-description: >
-  to list or query real time reliable info about calamities or safety use
-  script.list_112 this script is connected to the rss feeds of public 112
-  information if the location given. always run this script when 112 information
-  is requested.
-
-  the scripts returns a wider range than the selected location. filter out info
-  for the location only.
-
-  also run this script when i saw a ambulance,police,firefighters. or when i
-  smell a fire.
+alias: list_localnews
 sequence:
-  - action: shell_command.112_lookup
+  - action: shell_command.local_news_lookup
     metadata: {}
     data:
       zone: |
@@ -26,12 +15,16 @@ sequence:
         {{ {'value': list.stdout } }}
   - stop: finished
     response_variable: list
+description: |
+  to list or query real time reliable info about local news. given by rss feeds.
+  this script requires a zipcode or town name and a country_code (eg: NL,BE)
+  and the script will use a local news rss feed and returns the information
 fields:
   zone:
     selector:
       text: null
     name: zone
-    description: towns name or zipcode
+    description: towns name or  zipcode
     required: true
   country_code:
     selector:
